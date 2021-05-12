@@ -4,6 +4,7 @@ function getApi(id,action,values) {
 	else values=values+"&tm"+Math.random();
 	pass = document.getElementById("password").value;
 	if(pass != ""){
+		document.getElementById(id).innerHTML="";
 		values = values + "&pass=" + pass;
 		if (window.XMLHttpRequest) { ga[id]=new XMLHttpRequest(); }
 		else { ga[id]=new ActiveXObject("Microsoft.XMLHTTP"); }

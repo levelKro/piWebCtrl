@@ -13,7 +13,7 @@ WEBPATH = "web"
 class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         pathSplit = self.path.split("?")
-        pathSection = self.path.split("/")
+        pathSection = pathSplit[0].split("/")
         if self.path == '/':
             self.path = WEBPATH+'/index.html'
             return http.server.SimpleHTTPRequestHandler.do_GET(self)
@@ -26,8 +26,11 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             if self.getPass(self.path) == PASS:
                 if pathSection[2] == "reboot":
-                    self.wfile.write(bytes('{"html":"Powering off the Raspberry Pi","cmd":null}', "utf-8"))
+                    self.wfile.write(bytes('{"html":"Rebooting the Raspberry Pi","cmd":null}', "utf-8"))
                     os.system("sudo reboot &")
+                elif pathSection[2] == "poweroff":
+                    self.wfile.write(bytes('{"html":"Powering off the Raspberry Pi","cmd":null}', "utf-8"))
+                    os.system("sudo poweroff &")
                 else:
                     self.wfile.write(bytes('{"html":"Wrong command","cmd":null}', "utf-8"))
             else:
