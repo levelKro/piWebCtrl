@@ -2,6 +2,8 @@
 Basic controls from a Web UI for your Raspberry Pi.
 Running it in Background, open any web browser and point it to your Pi network IP address.
 
+![Preview](https://forum.raspberry-pi.fr/uploads/default/original/2X/e/ea170b5d328f9b443c472caf90e83a73b850f691.png)
+
 ### Install
 
 * Login into ssh on your Pi and go to "/home/pi" folder;
