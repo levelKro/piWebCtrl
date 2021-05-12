@@ -90,7 +90,10 @@ a.restart span  {
 	font-size:14px;
 	line-height:0.8;
 	padding:5px;
-	font-family:Courier
+	font-family:Courier;
+	margin: 5px auto;
+	display:block;
+	text-align:center;
 }
 .output::before {
 	content:'Output: ';

@@ -9,20 +9,19 @@
 	<body>
 		<div class="wrapper">
 			<div class="header">
-				<a href="/" class="logo"><img src="/rpi3d.gif" /> <span>piWebCtrl<small>v 0.1 alpha</small></span></a>
+				<a href="/" class="logo"><img src="/rpi3d.gif" /> <span><b style="color:#db1d66">pi</b>WebCtrl<small>a simple remote web ui for control your <b style="color:#db1d66">Raspberry Pi</b></small></span></a>
 			</div>
 			<div class="content">
 				<div class="controls">
-					<a href="#" onclick="getApi('output','/run/reboot','')" class="reboot"><img src="/ctrl-reboot.png" /><span>Reboot</span></a>
-					<a href="#" onclick="getApi('output','/run/poweroff','')" class="poweroff"><img src="/ctrl-poweroff.png" /><span>Power Off</span></a>
-					<!--<a href="#" onclick="getApi('output','/run/restart','')" class="restart"><img src="/ctrl-restart.png" /><span>Restart 'X' service</span></a>-->
-					<div class="line"><label for="password">Security password</label> <input type="password" name="Password" id="Password" /></div>
+					<a href="#" onclick="getApi('output','/run/reboot','')" class="reboot"><img src="/reboot.png" /><span>Reboot</span></a>
+					<a href="#" onclick="getApi('output','/run/poweroff','')" class="poweroff"><img src="/poweroff.png" /><span>Power Off</span></a>
+					<div class="line"><label for="password">Security password</label> <input type="password" name="password" id="password" /></div>
 					<div id="output" class="output"></div>
 				</div>
 				<div class="scene" style="max-height:'+Oh+'px; max-width:'+Ow+'px;"><div class="el-wrap x" style="max-height:'+Oh+'px; max-width:'+Ow+'px;"><div id="el1" class="el y"><div class="cube"><div class="side back"></div><div class="side left"></div><div class="side right"></div><div class="side top"></div><div class="side bottom"></div><div class="side front"></div></div></div></div></div>
 			</div>
 			<div class="footer">
-				piWebCtrl © 2021 Mathieu Légaré
+				<a href="https://github.com/levelKro/piWebCtrl">piWebCtrl</a> © 2021 Mathieu <i>levelKro</i> Légaré
 			</div>
 		</div>
 	</body>
