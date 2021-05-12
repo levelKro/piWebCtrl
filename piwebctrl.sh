@@ -17,7 +17,7 @@ RETVAL=0
 case "$1" in
   start)
     echo "Start process"
-    cd /home/pi/piwebctrl
+    cd /home/pi/piWebCtrl
     python3 ./piwebctrl.py &
     ;;
   stop)
@@ -38,7 +38,7 @@ case "$1" in
       sudo kill -9 $pid
     fi
 	echo "Start process"
-    cd /home/pi/piwebctrl
+    cd /home/pi/piWebCtrl
     python3 ./piwebctrl.py &
     ;;        
   *)
