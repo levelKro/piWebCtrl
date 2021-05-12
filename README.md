@@ -10,7 +10,7 @@ Running it in Background, open any web browser and point it to your Pi network I
 
 * Clone the GIT into the home directory;
 
-`git clone http://github.com/levelkro/piwebctrl.git`
+`git clone http://github.com/levelkro/piWebCtrl.git`
 
 * move the Autostart script into the init.d folder;
 
