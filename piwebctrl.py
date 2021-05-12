@@ -1,75 +1,48 @@
 #!/usr/bin/python3
-
-import socket
-from http.server import BaseHTTPRequestHandler, HTTPServer
-import time
-import os
-from os import path
 import urllib.parse as urlparse
 from urllib.parse import parse_qs
+import http.server
+import socketserver
+import os
+from os import path
 
-hostName = ""
-hostPort = 80
-password = "42758"
+PORT = 9000
+PASS = "42758"
+WEBPATH = "web"
 
-class piWebCtrl(BaseHTTPRequestHandler):
-
-    #GET is for clients geting the predi
+class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
+    def do_GET(self):
+        pathSplit = self.path.split("?")
+        pathSection = self.path.split("/")
+        if self.path == '/':
+            self.path = WEBPATH+'/index.html'
+            return http.server.SimpleHTTPRequestHandler.do_GET(self)
+        elif path.exists(WEBPATH+pathSplit[0]) is True:
+            self.path = WEBPATH+pathSplit[0]
+            return http.server.SimpleHTTPRequestHandler.do_GET(self)
+        elif pathSection[1] == "run":
+            self.send_response(200)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            if self.getPass(self.path) == PASS:
+                if pathSection[2] == "reboot":
+                    self.wfile.write(bytes('{"html":"Powering off the Raspberry Pi","cmd":null}', "utf-8"))
+                    os.system("sudo reboot &")
+                else:
+                    self.wfile.write(bytes('{"html":"Wrong command","cmd":null}', "utf-8"))
+            else:
+                self.wfile.write(bytes('{"html":"Wrong password","cmd":null}', "utf-8"))
+        else:
+            self.send_response(404)
+            self.send_header("Content-type", "text/html")
+            self.end_headers()
+            self.wfile.write(bytes('Document requested is not found.', "utf-8"))
+        return
+        
     def getPass(self,url):
         parsed = urlparse.urlparse("http://localhost"+url)
         return str(parse_qs(parsed.query)['pass']).replace("['","").replace("']","")
-        
-    def do_GET(self):
-        thisPath = self.path.split("?")
-        if thisPath[0] == "/":
-            self.send_response(200)
-            self.send_header("Content-type", "text/html; charset=utf-8")
-            fstr = open(r"web/index.html", encoding="utf-8").read()
-            self.wfile.write(bytes(fstr, "utf-8"))
-        elif thisPath[0] == "/run/reboot":
-            if self.getPass(self.path) == password:
-                self.send_response(200)
-                self.wfile.write(bytes('{"html":"Rebooting the Raspberry Pi","cmd":null}', "utf-8"))
-                os.system("sudo reboot &")
-            else:
-                self.send_response(200)
-                self.wfile.write(bytes('{"html":"Bad password, please retry.","cmd":null}', "utf-8"))
-        elif thisPath[0] == "/run/poweroff":
-            if self.getPass(self.path) == password:
-                self.send_response(200)
-                self.wfile.write(bytes('{"html":"Powering off the Raspberry Pi","cmd":null}', "utf-8"))
-                os.system("sudo poweroff &")
-            else:
-                self.send_response(200)
-                self.wfile.write(bytes('{"html":"Bad password, please retry.","cmd":null}', "utf-8"))
-        else:
-            if path.exists("web"+thisPath[0]) is True:
-                self.send_response(200)
-                fstr = open("web"+thisPath[0],"rb").read()
-                self.wfile.write(fstr)                
-            else:
-                self.send_response(404)
-                self.wfile.write(bytes("<p>You accessed path: '%s', is not found on this server</p>" % thisPath[0], "utf-8"))
 
-    #POST is for submitting data.
-    def do_POST(self):
-        print( "incomming http: ", self.path )
-        content_length = int(self.headers['Content-Length']) # <--- Gets the size of data
-        post_data = self.rfile.read(content_length) # <--- Gets the data itself
-        self.send_response(200)
-
-        client.close()
-
-        #import pdb; pdb.set_trace()
-
-
-myWebCtrl = HTTPServer((hostName, hostPort), piWebCtrl)
-print(time.asctime(), "Server Starts - %s:%s" % (hostName, hostPort))
-
-try:
-    myWebCtrl.serve_forever()
-except KeyboardInterrupt:
-    pass
-
-myWebCtrl.server_close()
-print(time.asctime(), "Server Stops - %s:%s" % (hostName, hostPort))
+handler_object = MyHttpRequestHandler
+my_server = socketserver.TCPServer(("", PORT), handler_object)
+my_server.serve_forever()
