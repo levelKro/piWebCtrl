@@ -1,0 +1,109 @@
+.scene,
+.scene * {
+  box-sizing: border-box;
+  transition: .3s;
+}
+.scene {
+  perspective: 300px;
+  display: flex;
+  /**/
+  align-items: center;
+  justify-content: center;
+  /**/
+  height: 100%;
+  width: 100%;
+}
+
+.cube {
+  transform-style: preserve-3d;
+  position: relative;
+  width: 100px;
+  height: 100px;
+  animation: rotate 20s linear infinite;
+  transform-origin: center center;
+}
+
+.side {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: rgba(0,0,0,0.80);
+  border:1px solid #333;
+  opacity: .95;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.back {
+  transform: translateZ(-50px) rotateX(180deg);
+  background-image: url(rpi.png);
+}
+
+.left {
+  transform: translateX(-50px) rotateY(90deg);
+  background-image: url(rpi.png);
+}
+
+.right {
+  transform: translateX(50px) rotateY(90deg);
+  background-image: url(rpi.png);
+}
+
+.top {
+  transform: translateY(-50px) rotateX(90deg);
+  background-image: url(rpi.png);
+}
+
+.bottom {
+  transform: translateY(50px) rotateX(270deg);
+  background-image: url(rpi.png);
+}
+
+.front {
+  transform: translateZ(50px);
+  background-image: url(rpi.png);
+}
+
+@keyframes rotate {
+	from { 
+		transform: rotateX(0deg) rotateY(0deg);
+	}
+	to { 
+		transform: rotateX(360deg) rotateY(360deg); 
+	}
+}
+:root {
+  --width: 150px;
+  --outputW: 100vw;
+  --outputH: 100vh;
+  --x-speed: 26s;
+  --y-speed: 14s;
+  --transition-speed: 2.2s;
+}
+
+.el { 
+  width: var(--width);
+  height: var(--width);  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/*
+.x {
+  animation: x var(--x-speed) linear infinite alternate;
+}
+.y {
+  animation: y var(--y-speed) linear infinite alternate;
+}
+
+@keyframes x {
+  100% {
+    transform: translateX(calc(var(--outputW) - var(--width)));
+  }
+}
+@keyframes y {
+  100% {
+    transform: translateY(calc(var(--outputH) - var(--width)));*/
+  }
+}
+*/
