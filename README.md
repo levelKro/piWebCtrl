@@ -34,4 +34,11 @@ Running it in Background, open any web browser and point it to your Pi network I
 
 `sudo systemctl start piwebctrl`
 
-* For use it, point any web browser to `http://<ip of pi>:9000` (if 9000 is the configured port)
+* For use it, point any web browser to `http://<ip of pi>:<port>` (9000 is the default port)
+
+### CLI
+
+This tool can be used like a cURL request from a CLI for remotly reboot or power off the Raspberry Pi.
+
+* Reboot : `http://<ip of pi>:<port>/run/reboot?pass=<password>`
+* Power off : `http://<ip of pi>:<port>/run/poweroff?pass=<password>`
