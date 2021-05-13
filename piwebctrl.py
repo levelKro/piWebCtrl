@@ -22,7 +22,7 @@ class MyHttpRequestHandler(http.server.SimpleHTTPRequestHandler):
             return http.server.SimpleHTTPRequestHandler.do_GET(self)
         elif pathSection[1] == "run":
             self.send_response(200)
-            self.send_header("Content-type", "text/html")
+            self.send_header("Content-type", "application/json")
             self.end_headers()
             if self.getPass(self.path) == PASS:
                 if pathSection[2] == "reboot":
