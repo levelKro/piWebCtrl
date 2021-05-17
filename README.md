@@ -2,7 +2,7 @@
 Basic controls from a Web UI for your Raspberry Pi.
 Running it in Background, open any web browser and point it to your Pi network IP address.
 
-![Preview](https://forum.raspberry-pi.fr/uploads/default/original/2X/e/ea170b5d328f9b443c472caf90e83a73b850f691.png)
+![Preview](https://forum.raspberry-pi.fr/uploads/default/original/2X/3/3304d0a2889081b005b3593f0201bf8cffe24896.png)
 
 ### Install
 
