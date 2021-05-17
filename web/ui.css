@@ -27,6 +27,7 @@ a:hover {
 	margin:10px;
 	display:block;
 	font-size:18px;
+	text-align:center;
 }
 .footer {
 	margin:10px;
@@ -55,9 +56,7 @@ a.logo small {
 	display:block;
 	text-align:center;
 }
-a.reboot,
-a.poweroff,
-a.restart {
+.controls div.option {
 	width: 75px;
 	height:100px;
 	overflow:hidden;
@@ -69,18 +68,37 @@ a.restart {
 	padding:10px;
 	border:1px solid #0b0b0d;
 }
-a.reboot:hover,
-a.poweroff:hover,
-a.restart:hover {
+.controls div.option:hover {
 	color:#fff;
 	background:#0b0b0d;
 	border:1px solid #1c1c21;
 }
-a.reboot span,
-a.poweroff span,
-a.restart span  {
+.controls div.option span  {
 	display:block;
 	margin:5px;
+}
+.controls div.option div.sub {
+	display:none;
+}
+.controls div.option.wsub:hover img,
+.controls div.option.wsub:focus img {
+	width:24px;
+	height:24px;
+}
+.controls div.option:hover div.sub,
+.controls div.option:focus div.sub {
+	display:block;
+}
+div.sub div {
+	display:block;
+	cursor:pointer;
+	padding:1px 3px;
+	margin:2px;
+	font-size:12px;
+	color:#fff;
+	text-align:center;
+	border:1px solid #0b0b0d;
+	background:rgba(0,0,0,0.9);
 }
 .output {
 	color:#fff;
@@ -93,10 +111,14 @@ a.restart span  {
 	font-family:Courier;
 	margin: 5px auto;
 	display:block;
-	text-align:center;
+	text-align:left;
 }
 .output::before {
-	content:'Output: ';
+	content:'Output:> ';
+	color:#1b6af2
+}
+.output::after {
+	content:'_';
 	color:#1b6af2
 }
 .line {
@@ -111,4 +133,31 @@ input[type="password"]{
 	font-size:14px;
 	line-height:0.8;
 	padding:5px;	
+}
+.stats {
+	display:inline-block;
+	color:#fff;
+	background:#0b0b0d;
+	border:1px solid #1c1c21;
+	font-size:14px;
+	padding:10px 10px 10px 74px;
+	font-family:Courier;
+	margin: 5px auto;
+	text-align:left;
+	min-height:64px;
+	width:auto;
+}
+.stats img {
+	margin:5px 10px 0 -64px;
+	float:left;
+}
+.stats span {
+	display:block;
+	line-height:0.9;
+	white-space:nowrap;
+	margin-right:10px;
+	
+}
+.stats span b {
+	color:#1b6af2
 }

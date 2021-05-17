@@ -2,20 +2,35 @@
 	<head>
 		<title>piWebCtrl</title>
 		<meta charset="UTF-8" />
-		<script type="text/javascript" src="/ui.js"></script>
-		<link rel="stylesheet" href="/ui.css">
-		<link rel="stylesheet" href="/cube3d.css">
+		<script type="text/javascript" src="ui.js"></script>
+		<link rel="stylesheet" href="ui.css">
+		<link rel="stylesheet" href="cube3d.css">
 	</head>
 	<body>
 		<div class="wrapper">
 			<div class="header">
-				<a href="/" class="logo"><img src="/rpi3d.gif" /> <span><b style="color:#db1d66">pi</b>WebCtrl<small>a simple remote web ui for control your <b style="color:#db1d66">Raspberry Pi</b></small></span></a>
+				<a href="/" class="logo"><img src="rpi3d.gif" /> <span><b style="color:#db1d66">pi</b>WebCtrl<small>a simple remote web ui for control your <b style="color:#db1d66">Raspberry Pi</b></small></span></a>
 			</div>
 			<div class="content">
+				<div class="stats">
+					<img src="stats-cpu.png" />
+					<span>Uptime: <b id="statsSYSUptime">up xx days, xx hours</b><span>
+					<span>Speed: <b id="statsCPUSpeed">---MHz</b> (<b id="statsCPUTemp">--°C</b>)<span>
+					<span>Load: <b id="statsSYSLoad"> x.xx, x.xx, x.xx</b><span>
+					<span>Free RAM: <b id="statsRAMFree"> ---MB</b>/<b id="statsRAMTotal"> ---MB</b><span>
+					<span>IP Address: <b id="statsSYSIP"> xxx.xxx.xxx.xxx</b><span>
+				</div>
 				<div class="controls">
-					<a href="#" onclick="getApi('output','/run/reboot','')" class="reboot"><img src="/reboot.png" /><span>Reboot</span></a>
-					<a href="#" onclick="getApi('output','/run/poweroff','')" class="poweroff"><img src="/poweroff.png" /><span>Power Off</span></a>
-					<div class="line"><label for="password">Security password</label> <input type="password" name="password" id="password" /></div>
+					<div onclick="getApi('output','/run/reboot','')" class="option"><img src="reboot.png" /><span>Reboot</span></div>
+					<div onclick="getApi('output','/run/poweroff','')" class="option"><img src="poweroff.png" /><span>Power Off</span></div>
+					<div class="option wsub"><img src="bluetooth.png" /><span>Bluetooth</span>
+						<div class="sub">
+							<div onclick="getApi('output','/run/service/start/bluetooth','')">Start</div>
+							<div onclick="getApi('output','/run/service/restart/bluetooth','')">Re-Start</div>
+							<div onclick="getApi('output','/run/service/stop/bluetooth','')">Stop</div>
+						</div>
+					</div>
+					<div class="line"><label for="password">Security password : </label> <input type="password" name="password" id="password" /></div>
 					<div id="output" class="output"></div>
 				</div>
 				<div class="scene"><div class="el-wrap x"><div id="el1" class="el y"><div class="cube"><div class="side back"></div><div class="side left"></div><div class="side right"></div><div class="side top"></div><div class="side bottom"></div><div class="side front"></div></div></div></div></div>

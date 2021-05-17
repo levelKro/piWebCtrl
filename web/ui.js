@@ -37,3 +37,30 @@ function getApi(id,action,values) {
 		document.getElementById(id).innerHTML="Password can't be empty"
 	}		
 }
+
+function geStats(id) { 
+	if (window.XMLHttpRequest) { gStats=new XMLHttpRequest(); }
+	else { gStats=new ActiveXObject("Microsoft.XMLHTTP"); }
+	gStats.onreadystatechange=function() {
+		if (gStats.readyState==4 && gStats.status==200) {
+			var result=gStats.responseText;		
+			var values=JSON.parse(result);	
+			if(!values.error){
+				document.getElementById("statsCPUSpeed").innerHTML=values.cpuspeed;
+				document.getElementById("statsCPUTemp").innerHTML=values.cputemp;
+				document.getElementById("statsRAMFree").innerHTML=values.ramfree;
+				document.getElementById("statsRAMTotal").innerHTML=values.ramtotal;
+				document.getElementById("statsSYSLoad").innerHTML=values.load;
+				document.getElementById("statsSYSUptime").innerHTML=values.uptime;
+				document.getElementById("statsSYSIP").innerHTML=values.ip;
+			}
+			else{
+				document.getElementById(id).innerHTML=values.error;
+			}	
+		}
+	}
+	gStats.open("GET","stats.json?"+Math.random(),true);
+	gStats.send();	
+}
+
+ setTimeout("geStats('output')",2000);
