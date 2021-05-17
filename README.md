@@ -42,3 +42,5 @@ This tool can be used like a cURL request from a CLI for remotly reboot or power
 
 * Reboot : `http://<ip of pi>:<port>/run/reboot?pass=<password>`
 * Power off : `http://<ip of pi>:<port>/run/poweroff?pass=<password>`
+* Service : `http://<ip of pi>:<port>/run/service/<start|stop|restart>/<servicename>?pass=<password>`
+* Stats (JSon) : `http://<ip of pi>:<port>/stats.json?pass=<password>`
