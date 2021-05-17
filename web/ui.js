@@ -57,6 +57,7 @@ function geStats(id) {
 			else{
 				document.getElementById(id).innerHTML=values.error;
 			}	
+			setTimeout("geStats('output')",10000);
 		}
 	}
 	gStats.open("GET","stats.json?"+Math.random(),true);
