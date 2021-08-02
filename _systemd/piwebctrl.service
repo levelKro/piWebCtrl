@@ -1,0 +1,14 @@
+[Unit]
+Description=piWebCtrl service
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=pi
+ExecStart=/home/pi/piWebCtrl/piwebctrl.sh
+
+[Install]
+WantedBy=multi-user.target

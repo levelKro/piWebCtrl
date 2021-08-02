@@ -16,15 +16,11 @@ Running it in Background, open any web browser and point it to your Pi network I
 
 * Move the Autostart script into the init.d folder;
 
-`sudo mv /home/pi/piWebCtrl/piwebctrl.sh /etc/init.d/piwebctrl.sh`
-
-* Make it executable;
-
-`sudo chmod +x /etc/init.d/piwebctrl.sh`
+`sudo cp /home/pi/piWebCtrl/_systemd/piwebctrl.service /etc/systemd/system/piwebctrl.service`
 
 * Install it for the boot;
 
-`sudo systemctl enable piwebctrl.sh`
+`sudo systemctl enable piwebctrl`
 
 * Configure the piWebCtrl (port and password);
 
