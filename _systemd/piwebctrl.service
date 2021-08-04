@@ -8,7 +8,7 @@ Type=simple
 Restart=always
 RestartSec=1
 User=pi
-ExecStart=/home/pi/piWebCtrl/piwebctrl.sh
+ExecStart=sh /home/pi/piWebCtrl/piwebctrl.sh
 
 [Install]
 WantedBy=multi-user.target
